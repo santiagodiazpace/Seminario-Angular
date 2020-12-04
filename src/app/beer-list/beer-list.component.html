@@ -6,15 +6,21 @@
             <th>Tipo</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Compra</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let beer of beers" [ngClass]="{'clearance': beer.clearance}">
-            <td> <img [src]="beer.image" [alt]="beer.name"></td>
+            <td> <img width="90" class="img-thumbnail" [src]="beer.image" [alt]="beer.name"></td>
             <td>{{beer.name}}</td>
             <td>{{beer.type}}</td>
             <td>{{beer.price}}</td>
             <td><span class="badge badge-warning" *ngIf="beer.stock==0"> Sin stock </span></td>
+            <td> 
+                <button class="btn btn-primary btn-sm" (click)="upQuantity(beer)" > + </button> 
+                <input type="text" [(ngModel)]="beer.quantity"> 
+                <button class="btn btn-primary btn-sm" (click)="downQuantity(beer)" > - </button>
+            </td>
         </tr>
     </tbody>
 </table>
